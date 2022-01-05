@@ -1,5 +1,5 @@
 describe("js function - forEach", () => {
-    function testMe(data,) {
+    function testMe(data) {
         const testData = [];
         data.forEach((item) => {
             testData.push(item + 1)
@@ -10,7 +10,7 @@ describe("js function - forEach", () => {
     it("testMe returns correctly", () => {
         let expected = [96, 26, 21, 21, 21];
         let testData = [95, 25, 20, 20, 20];
-        let result = testMe(testData, testData);
+        let result = testMe(testData);
         expect(result).toEqual(expected)
     })
 })
