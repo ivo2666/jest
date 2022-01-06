@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const schema = Joi.object({
     username: Joi.string()
@@ -25,4 +25,4 @@ const schema = Joi.object({
     .required(),
 })
 
-export default schema
+module.exports =  schema

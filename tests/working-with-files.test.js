@@ -1,8 +1,9 @@
 const fs = require('fs');
-import readSourceFile from './working-with-files';
+const path = require('path');
+const readSourceFile = require('../work_with_files/working-with-files.js');
 
 describe("readSourceFile function", () => {
-    const targetFilePath = './target.json';
+    const targetFilePath = path.join(__dirname, '../work_with_files/target.json');
     beforeEach(() => {
         if (fs.existsSync(targetFilePath)) {
             return fs.unlinkSync(targetFilePath);

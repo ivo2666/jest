@@ -10,7 +10,6 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   },
-  "type": "module",
   "dependencies": {
     "@babel/preset-env": "^7.16.7",
     "joi": "^17.5.0",

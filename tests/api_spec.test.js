@@ -1,6 +1,6 @@
 const fs = require('fs');
-import yalmToJsonConv from '../api_spec/yamlToJson.js';
-import testJson from '../api_spec/testJson.json';
+const path = require('path')
+const yalmToJsonConv = require('../api_spec/yamlToJson.js');
 
 describe("yalmToJsonConv function", () => {
     const outputFile = '../api_spec/api_spec.json';
@@ -12,11 +12,10 @@ describe("yalmToJsonConv function", () => {
     });
 
     it("json is correctly", () => {
-        const expected = testJson;
-        console.log(fs.readdirSync(__dirname))
-        yalmToJsonConv('./api_spec.yaml', './testJson.json');
-        const result = readFileSync('../api_spec/api_spec.json', { encoding: 'utf8' });
-        expect(result).toBe(expected);
+        const expected = JSON.parse(fs.readFileSync(path.join(__dirname, '../api_spec/testJson.json'), { encoding: 'utf8' }));
+        yalmToJsonConv();
+        const result = JSON.parse(fs.readFileSync(path.join(__dirname, '../api_spec/api_spec.json'), { encoding: 'utf8' }));
+        expect(result).toMatchObject(expected);
     });
 
 })
