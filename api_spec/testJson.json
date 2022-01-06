@@ -1,0 +1,195 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Simple API",
+    "description": "A simple API to illustrate OpenAPI concepts"
+  },
+  "servers": [
+    {
+      "url": "https://sport.io/v1"
+    }
+  ],
+  "paths": {
+    "/events": {
+      "get": {
+        "description": "Returns a list of events",
+        "responses": {
+          "200": {
+            "description": "Successfully returned a list of events",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/event"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      },
+      "post": {
+        "description": "Lets a user post a new events",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/event"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created a new artist"
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    },
+    "/teems": {
+      "get": {
+        "description": "Returns a list of teems",
+        "responses": {
+          "200": {
+            "description": "Successfully returned a list of teems",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/teem"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      },
+      "post": {
+        "description": "Lets a user post a new teems",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/teem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully created a new artist"
+          },
+          "400": {
+            "$ref": "#/components/responses/400Error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "time": {
+        "type": "string"
+      },
+      "events": {
+        "type": "string"
+      },
+      "event": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "event_id": {
+              "type": "number"
+            },
+            "event_happened": {
+              "type": "boolean"
+            },
+            "events_prop": {
+              "type": "object",
+              "properties": {
+                "time": {
+                  "type": "string"
+                },
+                "place": {
+                  "type": "string"
+                }
+              }
+            },
+            "players": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "event_time": {
+              "$ref": "#/components/schemas/time"
+            }
+          }
+        }
+      },
+      "teem": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "event_id": {
+              "type": "number"
+            },
+            "event_happened": {
+              "type": "boolean"
+            },
+            "venue": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "capacity": {
+                  "type": "string"
+                }
+              }
+            },
+            "players": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "events": {
+              "$ref": "#/components/schemas/events"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "400Error": {
+        "description": "Invalid request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
