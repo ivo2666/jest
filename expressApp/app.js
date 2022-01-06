@@ -10,10 +10,15 @@ app.get('/', (req, res) => {
   res.send("hello")
 })
 
-app.get('/cars', (req, res) => {
+app.get('/cars/:brand', (req, res) => {
+  const {brand} = req.params
   const data = fs.readFileSync(path.join(__dirname, './database.json'), { encoding: 'utf8' });
   const parsedData = JSON.parse(data);
-  res.send(parsedData.cars)
+  const car = parsedData.cars.find(x => x.brand === brand)
+  if (!car) {
+    res.send("there is no such car")
+  }
+  res.send(car)
 })
 
 app.post('/car', (req, res) => {
