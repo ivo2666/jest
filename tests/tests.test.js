@@ -6,10 +6,10 @@ const transformData = (inputData) => {
                 data = [...data, x]
                 break
             case "object":
-                Object.values(x).map(typeChekFunc)
+                Object.values(x).forEach(typeChekFunc)
                 break
             default:
-                x.map(item => typeChekFunc(item))
+                x.forEach(item => typeChekFunc(item))
                 break
         }
     }
