@@ -1,18 +1,19 @@
 const transformData = (inputData) => {
-    const data = []
-    const objDestFunc = obj => Object.values(obj).map(typeChekFunc)[0]
+    let data = [];
     const typeChekFunc = x => {
         switch (typeof x) {
             case "string":
-                return data.push(x)
+                data = [...data, x]
+                break
             case "object":
-                return objDestFunc(x)
+                Object.values(x).map(typeChekFunc)
+                break
             default:
-                return x.map(typeChekFunc)
+                x.map(item => typeChekFunc(item))
+                break
         }
     }
-    inputData.map(typeChekFunc)
-
+    inputData.forEach(typeChekFunc)
     return data
 }
 
